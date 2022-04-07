@@ -1,37 +1,73 @@
-<p>registro works!</p>
-
 
 <div class="body">
 
-   <div class="login">
-      <img src="./assets/img/user.png" width="50%">
-      <h1>Regístrate</h1>
-      <mat-form-field class="ancho" appearance="fill">
-         <mat-label>Nombre</mat-label>
-         <input type="text" matInput autocomplete="off">
-      </mat-form-field>
+   <form [formGroup]="miFormulario"  
+         (ngSubmit)="submitFormulario()" 
+         autocomplete="off" >
+      <div class="login">
+         <img src="./assets/img/kiss.png" width="90%">
+         <h1>{{ registro }}</h1>
 
+         <mat-form-field class="ancho" appearance="fill">
+            <mat-label>Nombre</mat-label>
+            <input type="text" 
+                     matInput 
+                     formControlName="nombre" >
+            <span class="form-text "
+               *ngIf="campoNoValido('nombre')" >
+               Debe de ser en formato de nombre y apellido.
+            </span>
+         </mat-form-field>
 
-      <mat-form-field class="ancho" appearance="fill">
-         <mat-label>Email</mat-label>
-         <input type="email" matInput autocomplete="off">
-      </mat-form-field>
+         <mat-form-field class="ancho" appearance="fill">
+            <mat-label>Email</mat-label>
+            <input type="email" 
+                     matInput 
+                     class="form-control" 
+                     formControlName="email" >
+            <span class="form-text "
+            *ngIf="campoNoValido('email')" >
+               El correo es obligatorio.
+            </span>
+         </mat-form-field>
 
-      <mat-form-field class="ancho" appearance="fill">
-         <mat-label>Contraseña</mat-label>
-         <input type="password" matInput autocomplete="off">
-      </mat-form-field>
+         <mat-form-field class="ancho" appearance="fill">
+            <mat-label>Contraseña</mat-label>
+            <input type="password" 
+            matInput 
+            formControlName="password"
+            >
+            <span class="form-text "
+               *ngIf="campoNoValido('password')" >
+               La contraseña debe de ser mayor de 6 caracteres.
+            </span> 
+         </mat-form-field>
 
-      <button  type="submit"
-               mat-raised-button 
-               color="primary"
-               class="button ancho registro" 
-               >
-               Regístrate
-      </button>
+         <mat-form-field class="ancho" appearance="fill">
+            <mat-label>Contraseña</mat-label>
+            <input type="password" 
+            matInput 
+            formControlName="password2"          
+            >
+            <span class="form-text "
+               *ngIf="campoNoValido('password2')" >
+                  Las contraseñas deben de ser iguales.
+            </span>
+         </mat-form-field>
 
-   </div>
+         <button  type="submit"
+                  mat-raised-button 
+                  color="primary"
+                  class="button ancho registro" 
+                  [disabled]="miFormulario.pending"
+                  [disabled]="miFormulario.invalid"
+                  (click)="guardar()"
+                  >
+                  Regístrate
+         </button>
 
+      </div>
+   </form>
 </div>
 
 

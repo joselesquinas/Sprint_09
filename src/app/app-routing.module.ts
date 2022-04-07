@@ -7,9 +7,7 @@ import { EmployeesModule } from './employees/employees.module';
 
 
 const routes: Routes = [
-  {
-    path: '', redirectTo: 'login', pathMatch:'full',
-  },
+
   {
     path: 'auth',
     loadChildren: () => import( './auth/auth.module' ).then( m => AuthModule ),
@@ -19,13 +17,13 @@ const routes: Routes = [
     loadChildren: () => import( './employees/employees.module').then ( m => EmployeesModule ),
   },
   {
-    path: '**', redirectTo: 'login', pathMatch:'full',
+    path: '**', redirectTo: 'auth', pathMatch:'full',
   }
 
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot( routes )],
   exports: [
     RouterModule
   ]

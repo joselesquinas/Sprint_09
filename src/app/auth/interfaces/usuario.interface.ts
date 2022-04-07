@@ -1,7 +1,3 @@
-export interface Usuario{
-   
-}
-
 export interface Forms {
    nombre   : string;
    email    : string;
@@ -14,4 +10,12 @@ export interface Forms {
 export interface FormLogin {
    email    : string;
    password : string;
+}
+
+export interface Users {
+   nombre   : string;
+   email    : string;
+   fechaIso : Date;
+   password : string;
+
 }

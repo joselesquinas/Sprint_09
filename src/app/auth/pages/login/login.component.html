@@ -1,39 +1,59 @@
 
 <div class="body">
+   <form  autocomplete="off" 
+         [formGroup]="miFormulario" 
+         (ngSubmit)="submitLogin()" >
+   
+      <div class="login">
+         <img src="./assets/img/kiss.png" width="90%">
+         <h1>Login</h1>
+   
+         <mat-form-field class="ancho" appearance="fill">
+            <mat-label>Email</mat-label>
+            <input   type="email" 
+                     matInput 
+                     formControlName="email" >
+            <span class="form-text "
+                   *ngIf="campoNoValido('email')" >
+                     El correo es obligatorio.
+            </span>
+         </mat-form-field>
 
-   <div class="login">
-      <img src="./assets/img/user.png" width="50%">
-      <h1>Login</h1>
+         <mat-form-field class="ancho" appearance="fill">
+            <mat-label>Contraseña</mat-label>
+            <input   type="password" 
+                     matInput 
+                     formControlName="password" >
+            <span class="form-text"
+               *ngIf="campoNoValido('password')" >
+               La contraseña debe de ser mayor de 6 caracteres.
+            </span> 
+         </mat-form-field>
+          
 
-      <mat-form-field class="ancho" appearance="fill">
-         <mat-label>Email</mat-label>
-         <input type="email" matInput autocomplete="off">
-      </mat-form-field>
-
-      <mat-form-field class="ancho" appearance="fill">
-         <mat-label>Contraseña</mat-label>
-         <input type="password" matInput autocomplete="off">
-      </mat-form-field>
-       
-      <button  type="submit"
-               mat-raised-button 
-               color="primary"
-               class="button ancho" 
-               (click)="onPruebas()">
-               Inicia sesión
-      </button>
-
-      <button  type="submit"
-               mat-raised-button 
-               color="secundary"
-               class="button ancho registro" 
-               (click)="onRegistro()">
-               Crea tu cuenta
-      </button>
-
+         <button  type="submit"
+                  mat-raised-button 
+                  color="primary"
+                  class="button ancho" 
+                  [disabled]="miFormulario.pending"
+                  [disabled]="miFormulario.invalid"
+                  (click)="submitLogin()"
+                  >
+                  Inicia sesión
+         </button>
+   
+         <button  
+                  mat-raised-button 
+                  color="secundary"
+                  class="button ancho registro" 
+                  (click)="onRegistro()"
+                  >
+                  Crea tu cuenta
+         </button>
+   
+      </div>
+   </form>
    </div>
-
-</div>
 
 
 
